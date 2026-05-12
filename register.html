@@ -25,7 +25,6 @@
     <!-- Brand -->
     <div class="brand">
       <div class="logo-circle">
-        <!-- Logo-Platzhalter: ersetze dieses img-Tag mit eurem Logo -->
         <img src="img/logo.png" alt="Bien Dormir Logo" class="logo-img" />
       </div>
       <h1>Bien Dormir</h1>
@@ -45,6 +44,11 @@
         <div class="field">
           <label for="password">Passwort</label>
           <input type="password" id="password" placeholder="••••••••" autocomplete="new-password" required />
+          <div class="strength-bar">
+            <div class="strength-fill" id="strengthFill"></div>
+          </div>
+          <div class="strength-label" id="strengthLabel"></div>
+        </div>
         <button type="submit" class="btn-primary" id="registerBtn">Konto erstellen</button>
       </form>
 
