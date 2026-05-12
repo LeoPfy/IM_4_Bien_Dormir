@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bien Dormir — Monitor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="page-monitor">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <img src="img/logo.png" alt="Logo" class="header-logo" />
+      <span class="header-title">Bien Dormir</span>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="monitor-main">
+
+    <div class="page-title-row">
+      <h1>Raumklima</h1>
+      <span class="page-time" id="pageTime">—</span>
+    </div>
+
+    <!-- Sensor Cards -->
+    <div class="sensor-grid">
+
+      <div class="sensor-card" id="card-temp">
+        <div class="sensor-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
+          </svg>
+        </div>
+        <div class="sensor-info">
+          <div class="sensor-label">Temperatur</div>
+          <div class="sensor-value"><span id="tempValue">—</span><span class="sensor-unit">°C</span></div>
+          <div class="sensor-range">Optimal: 18–22°C</div>
+        </div>
+      </div>
+
+      <div class="sensor-card" id="card-humidity">
+        <div class="sensor-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+          </svg>
+        </div>
+        <div class="sensor-info">
+          <div class="sensor-label">Luftfeuchtigkeit</div>
+          <div class="sensor-value"><span id="humidityValue">—</span><span class="sensor-unit">%</span></div>
+          <div class="sensor-range">Optimal: 40–60%</div>
+        </div>
+      </div>
+
+      <div class="sensor-card" id="card-noise">
+        <div class="sensor-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          </svg>
+        </div>
+        <div class="sensor-info">
+          <div class="sensor-label">Geräuschpegel</div>
+          <div class="sensor-value"><span id="noiseValue">—</span><span class="sensor-unit">dB</span></div>
+          <div class="sensor-range">Optimal: &lt; 40 dB</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Empfehlung -->
+    <div class="recommendation-card" id="recommendationCard">
+      <div class="recommendation-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+      <div>
+        <div class="recommendation-title">Empfehlung</div>
+        <div class="recommendation-text" id="recommendationText">Wird geladen…</div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="dashboard.html" class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      <span>Übersicht</span>
+    </a>
+    <a href="monitor.html" class="nav-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <span>Monitor</span>
+    </a>
+    <a href="history.html" class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span>Verlauf</span>
+    </a>
+    <a href="profile.html" class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Profil</span>
+    </a>
+  </nav>
+
+  <script src="js/monitor.js"></script>
+
+</body>
+</html>
