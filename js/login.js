@@ -24,7 +24,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
     if (result.status === "success") {
       btn.textContent = "✓ Angemeldet";
-      window.location.href = "dashboard.html";
+      window.location.href = "protected.html";
     } else {
       errBox.textContent = result.message || "Ungültige Anmeldedaten.";
       errBox.classList.add("visible");
