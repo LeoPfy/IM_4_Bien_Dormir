@@ -1,35 +1,312 @@
 /* style.css */
+/* ============================================================
+   Bien Dormir — Shared Styles
+   Gilt für: login.html, register.html
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:       #f5f0e8;
+  --beige:       #ede8dc;
+  --sage:        #4a7c59;
+  --sage-light:  #7aab8a;
+  --sage-pale:   #d6e4d8;
+  --sand:        #c9b89a;
+  --text:        #2d3a2e;
+  --muted:       #7a8a7b;
+  --white:       #fdfcf9;
+  --card-shadow: 0 8px 40px rgba(74,124,89,0.10), 0 2px 8px rgba(74,124,89,0.06);
+}
+
+/* ── Base ───────────────────────────────────────────────── */
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  max-width: 600px;
-  line-height: 1.5;
+  min-height: 100vh;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  position: relative;
+  overflow: hidden;
 }
 
-h1 {
-  margin-bottom: 1em;
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 10% 10%, rgba(214,228,216,0.5) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 90% 90%, rgba(201,184,154,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 60% 20%, rgba(245,240,232,0.8) 0%, transparent 50%);
+  pointer-events: none;
 }
 
-form > div {
-  margin-bottom: 1em;
+/* ── Background decoration ──────────────────────────────── */
+
+.bg-deco {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  color: var(--sage-light);
+  opacity: 0.18;
+  font-size: 10px;
+  animation: float 8s ease-in-out infinite alternate;
+}
+
+/* Individuelle Positionen & Timings */
+.s1 { top:  8%; left: 12%; animation-duration:  9s; animation-delay: 0.0s; }
+.s2 { top: 15%; left: 75%; animation-duration: 11s; animation-delay: 1.0s; }
+.s3 { top: 72%; left:  8%; animation-duration:  8s; animation-delay: 2.0s; }
+.s4 { top: 80%; left: 85%; animation-duration: 10s; animation-delay: 0.5s; }
+.s5 { top: 45%; left: 92%; animation-duration: 12s; animation-delay: 3.0s; }
+.s6 { top: 30%; left:  4%; animation-duration:  7s; animation-delay: 1.5s; }
+.s7 { top: 60%; left: 50%; animation-duration:  9s; animation-delay: 4.0s; opacity: 0.08; }
+
+@keyframes float {
+  from { transform: translateY(0px)   rotate(0deg); }
+  to   { transform: translateY(-12px) rotate(20deg); }
+}
+
+/* ── Page wrapper ───────────────────────────────────────── */
+
+.wrapper {
+  width: 100%;
+  max-width: 420px;
+  padding: 24px 16px;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Brand / Logo ───────────────────────────────────────── */
+
+.brand {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.logo-circle {
+  width: 80px;
+  height: 80px;
+  background: var(--beige);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  border: 1.5px solid rgba(74, 124, 89, 0.15);
+  overflow: hidden;
+}
+
+/* Logo-Bild: img/logo.png wird hier eingepasst */
+.logo-img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+/* Platzhalter-Fallback falls das Bild fehlt */
+.logo-img[src="img/logo.png"]:not([complete]),
+.logo-img[src="img/logo.png"][naturalWidth="0"] {
+  visibility: hidden;
+}
+
+.brand h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: -0.3px;
+  margin-bottom: 6px;
+}
+
+.brand p {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+/* ── Card ───────────────────────────────────────────────── */
+
+.card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 36px 36px 28px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid rgba(74, 124, 89, 0.08);
+}
+
+/* ── Form fields ────────────────────────────────────────── */
+
+.field {
+  margin-bottom: 20px;
 }
 
 label {
-  display: inline-block;
-  width: 80px;
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
 }
 
 input[type="email"],
-input[type="password"] {
-  width: 200px;
-  padding: 4px;
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid var(--beige);
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--cream);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
 }
 
-button {
-  padding: 8px 16px;
+input::placeholder {
+  color: #b5bdb6;
+  font-weight: 300;
+}
+
+input:focus {
+  border-color: var(--sage);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.10);
+}
+
+/* ── Feedback messages ──────────────────────────────────── */
+
+.error-msg {
+  display: none;
+  background: #fdf0ec;
+  border: 1px solid #e8c4b5;
+  color: #9b4a2e;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+.error-msg.visible { display: block; }
+
+.success-msg {
+  display: none;
+  background: #f0f7f1;
+  border: 1px solid #a8d4b2;
+  color: #2d6b3e;
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+.success-msg.visible { display: block; }
+
+/* ── Buttons ────────────────────────────────────────────── */
+
+.btn-primary {
+  width: 100%;
+  padding: 15px;
+  background: var(--sage);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-bottom: 12px;
+  letter-spacing: 0.2px;
+}
+.btn-primary:hover   { background: #3d6b4a; }
+.btn-primary:active  { transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.btn-secondary {
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  color: var(--sage);
+  border: 1.5px solid var(--sage-pale);
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+.btn-secondary:hover {
+  background: var(--sage-pale);
+  border-color: var(--sage-light);
 }
 
-p {
-  margin-top: 1em;
+/* ── Divider ────────────────────────────────────────────── */
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  color: var(--sand);
+  font-size: 12px;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--beige);
+}
+
+/* ── Password strength (register only) ─────────────────── */
+
+.strength-bar {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--beige);
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.strength-fill {
+  height: 100%;
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.3s, background 0.3s;
+}
+
+.strength-label {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+  min-height: 16px;
+}
+
+/* ── Footer note ────────────────────────────────────────── */
+
+.footer-note {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
+  color: var(--muted);
 }

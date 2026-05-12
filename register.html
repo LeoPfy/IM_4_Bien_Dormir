@@ -1,27 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Register</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <h1>Register</h1>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bien Dormir — Registrieren</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
 
-    <form id="registerForm">
-      <div>
-        <label>Email</label>
-        <input type="email" id="email" required />
+  <!-- Dekorative Hintergrundelemente -->
+  <div class="bg-deco" aria-hidden="true">
+    <span class="star s1">✦</span>
+    <span class="star s2">✦</span>
+    <span class="star s3">✦</span>
+    <span class="star s4">✦</span>
+    <span class="star s5">✦</span>
+    <span class="star s6">✦</span>
+  </div>
+
+  <div class="wrapper">
+
+    <!-- Brand -->
+    <div class="brand">
+      <div class="logo-circle">
+        <!-- Logo-Platzhalter: ersetze dieses img-Tag mit eurem Logo -->
+        <img src="img/logo.png" alt="Bien Dormir Logo" class="logo-img" />
       </div>
-      <div>
-        <label>Password</label>
-        <input type="password" id="password" required />
-      </div>
-      <button type="submit">Register</button>
-    </form>
+      <h1>Bien Dormir</h1>
+      <p>Konto erstellen</p>
+    </div>
 
-    <p>Already have an account? <a href="login.html">Login here</a>.</p>
+    <!-- Card -->
+    <div class="card">
+      <div id="errorMsg"   class="error-msg"   role="alert"></div>
+      <div id="successMsg" class="success-msg" role="status"></div>
 
-    <script src="js/register.js"></script>
-  </body>
+      <form id="registerForm" novalidate>
+        <div class="field">
+          <label for="email">E-Mail</label>
+          <input type="email" id="email" placeholder="deine@email.com" autocomplete="email" required />
+        </div>
+        <div class="field">
+          <label for="password">Passwort</label>
+          <input type="password" id="password" placeholder="••••••••" autocomplete="new-password" required />
+          <div class="strength-bar">
+            <div class="strength-fill" id="strengthFill"></div>
+          </div>
+          <div class="strength-label" id="strengthLabel"></div>
+        </div>
+        <button type="submit" class="btn-primary" id="registerBtn">Konto erstellen</button>
+      </form>
+
+      <div class="divider">oder</div>
+      <a href="login.html" class="btn-secondary">Bereits registriert? Anmelden</a>
+    </div>
+
+    <p class="footer-note">Bien Dormir &mdash; Besser schlafen. Besser aufwachsen.</p>
+  </div>
+
+  <script src="js/register.js"></script>
+
+</body>
 </html>

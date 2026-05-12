@@ -1,27 +1,41 @@
 // login.js
+
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const email = document.getElementById("email").value.trim();
+  const email    = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
+  const errBox   = document.getElementById("errorMsg");
+  const btn      = document.getElementById("loginBtn");
+
+  // Reset
+  errBox.classList.remove("visible");
+  btn.disabled    = true;
+  btn.textContent = "Wird geprüft…";
 
   try {
     const response = await fetch("api/login.php", {
       method: "POST",
-      // credentials: 'include', // uncomment if front-end & back-end are on different domains
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
+
     const result = await response.json();
 
     if (result.status === "success") {
-      alert("Login successful!");
-      window.location.href = "protected.html";
+      btn.textContent = "✓ Angemeldet";
+      window.location.href = "dashboard.html";
     } else {
-      alert(result.message || "Login failed.");
+      errBox.textContent = result.message || "Ungültige Anmeldedaten.";
+      errBox.classList.add("visible");
+      btn.disabled    = false;
+      btn.textContent = "Anmelden";
     }
   } catch (error) {
-    console.error("Error:", error);
-    alert("Something went wrong!");
+    console.error("Fehler:", error);
+    errBox.textContent = "Verbindungsfehler. Bitte nochmals versuchen.";
+    errBox.classList.add("visible");
+    btn.disabled    = false;
+    btn.textContent = "Anmelden";
   }
 });
