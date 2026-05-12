@@ -34,7 +34,6 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
 
   const email    = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
-  const confirm  = document.getElementById("passwordConfirm").value;
   const errBox   = document.getElementById("errorMsg");
   const okBox    = document.getElementById("successMsg");
   const btn      = document.getElementById("registerBtn");
@@ -44,11 +43,6 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
   okBox.classList.remove("visible");
 
   // Client-seitige Validierung
-  if (password !== confirm) {
-    errBox.textContent = "Die Passwörter stimmen nicht überein.";
-    errBox.classList.add("visible");
-    return;
-  }
   if (password.length < 8) {
     errBox.textContent = "Das Passwort muss mindestens 8 Zeichen haben.";
     errBox.classList.add("visible");
