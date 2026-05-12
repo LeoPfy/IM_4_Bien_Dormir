@@ -1,32 +1,5 @@
 // register.js
 
-// ── Passwort-Stärke-Anzeige ──────────────────────────────
-
-document.getElementById("password").addEventListener("input", function () {
-  const v    = this.value;
-  const fill = document.getElementById("strengthFill");
-  const lbl  = document.getElementById("strengthLabel");
-
-  let score = 0;
-  if (v.length >= 8)          score++;
-  if (/[A-Z]/.test(v))        score++;
-  if (/[0-9]/.test(v))        score++;
-  if (/[^A-Za-z0-9]/.test(v)) score++;
-
-  const configs = [
-    { w: "0%",   bg: "",          text: "" },
-    { w: "25%",  bg: "#e07a5f",   text: "Schwach" },
-    { w: "50%",  bg: "#f2a62a",   text: "Mittel" },
-    { w: "75%",  bg: "#7aab8a",   text: "Gut" },
-    { w: "100%", bg: "#4a7c59",   text: "Stark" },
-  ];
-
-  const c = configs[score] || configs[0];
-  fill.style.width      = c.w;
-  fill.style.background = c.bg;
-  lbl.textContent       = c.text;
-});
-
 // ── Formular abschicken ──────────────────────────────────
 
 document.getElementById("registerForm").addEventListener("submit", async (e) => {

@@ -10,6 +10,16 @@
 </head>
 <body>
 
+  <!-- Dekorative Hintergrundelemente -->
+  <div class="bg-deco" aria-hidden="true">
+    <span class="star s1">✦</span>
+    <span class="star s2">✦</span>
+    <span class="star s3">✦</span>
+    <span class="star s4">✦</span>
+    <span class="star s5">✦</span>
+    <span class="star s6">✦</span>
+  </div>
+
   <div class="wrapper">
 
     <!-- Brand -->
@@ -34,10 +44,7 @@
         <div class="field">
           <label for="password">Passwort</label>
           <input type="password" id="password" placeholder="••••••••" autocomplete="new-password" required />
-          <div class="strength-bar">
-            <div class="strength-fill" id="strengthFill"></div>
-          </div>
-          <div class="strength-label" id="strengthLabel"></div>
+
         </div>
         <button type="submit" class="btn-primary" id="registerBtn">Konto erstellen</button>
       </form>
