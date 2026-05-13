@@ -319,11 +319,9 @@ input:focus {
    ============================================================ */
 
 body.page-monitor {
-  display: block !important;
+  display: block;
   overflow: auto;
   padding-bottom: 90px;
-  align-items: unset;
-  justify-content: unset;
 }
 
 /* ── Header ─────────────────────────────────────────────── */
