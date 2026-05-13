@@ -18,16 +18,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    // Check user in DB
-    $stmt = $pdo->prepare("SELECT id, password FROM users WHERE email = :email");
+    // firstname und lastname auch holen
+    $stmt = $pdo->prepare("SELECT id, password, firstname, lastname FROM users WHERE email = :email");
     $stmt->execute([':email' => $email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Verify password
     if ($user && password_verify($password, $user['password'])) {
         session_regenerate_id(true);
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['email']   = $email;
+        $_SESSION['user_id']   = $user['id'];
+        $_SESSION['email']     = $email;
+        $_SESSION['firstname'] = $user['firstname'];
+        $_SESSION['lastname']  = $user['lastname'];
 
         echo json_encode(["status" => "success"]);
     } else {

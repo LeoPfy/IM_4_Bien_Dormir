@@ -9,33 +9,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $data = json_decode(file_get_contents("php://input"), true);
 
-    $email    = trim($data['email'] ?? '');
-    $password = trim($data['password'] ?? '');
+    $firstname = trim($data['firstname'] ?? '');
+    $lastname  = trim($data['lastname']  ?? '');
+    $email     = trim($data['email']     ?? '');
+    $password  = trim($data['password']  ?? '');
 
-    if (!$email || !$password) {
-        echo json_encode(["status" => "error", "message" => "Email and password are required"]);
+    if (!$firstname || !$lastname || !$email || !$password) {
+        echo json_encode(["status" => "error", "message" => "Alle Felder sind erforderlich"]);
         exit;
     }
 
-    // Check if email already exists
+    // Prüfen ob Email bereits existiert
     $stmt = $pdo->prepare("SELECT id FROM users WHERE email = :email");
     $stmt->execute([':email' => $email]);
     if ($stmt->fetch()) {
-        echo json_encode(["status" => "error", "message" => "Email is already in use"]);
+        echo json_encode(["status" => "error", "message" => "Diese E-Mail wird bereits verwendet"]);
         exit;
     }
 
-    // Hash the password
+    // Passwort hashen
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Insert the new user
-    $insert = $pdo->prepare("INSERT INTO users (email, password) VALUES (:email, :pass)");
+    // User einfügen
+    $insert = $pdo->prepare("INSERT INTO users (firstname, lastname, email, password) 
+                              VALUES (:firstname, :lastname, :email, :pass)");
     $insert->execute([
-        ':email' => $email,
-        ':pass'  => $hashedPassword
+        ':firstname' => $firstname,
+        ':lastname'  => $lastname,
+        ':email'     => $email,
+        ':pass'      => $hashedPassword,
     ]);
 
     echo json_encode(["status" => "success"]);
+
 } else {
     echo json_encode(["status" => "error", "message" => "Invalid request method"]);
 }

@@ -601,3 +601,32 @@ body.page-monitor {
   from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Monitor: Willkommenszeile ──────────────────────────── */
+
+.welcome-row {
+  margin-bottom: 6px;
+}
+
+.welcome-text {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.welcome-text span {
+  font-weight: 500;
+  color: var(--sage);
+}
+
+/* ── Register: Vorname / Nachname nebeneinander ─────────── */
+
+.field-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 0;
+}
+
+.field-row .field {
+  flex: 1;
+}

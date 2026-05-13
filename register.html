@@ -10,9 +10,17 @@
 </head>
 <body>
 
+  <div class="bg-deco" aria-hidden="true">
+    <span class="star s1">✦</span>
+    <span class="star s2">✦</span>
+    <span class="star s3">✦</span>
+    <span class="star s4">✦</span>
+    <span class="star s5">✦</span>
+    <span class="star s6">✦</span>
+  </div>
+
   <div class="wrapper">
 
-    <!-- Brand -->
     <div class="brand">
       <div class="logo-circle">
         <img src="img/logo.png" alt="Bien Dormir Logo" class="logo-img" />
@@ -21,12 +29,21 @@
       <p>Konto erstellen</p>
     </div>
 
-    <!-- Card -->
     <div class="card">
       <div id="errorMsg"   class="error-msg"   role="alert"></div>
       <div id="successMsg" class="success-msg" role="status"></div>
 
       <form id="registerForm" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="firstname">Vorname</label>
+            <input type="text" id="firstname" placeholder="Max" autocomplete="given-name" required />
+          </div>
+          <div class="field">
+            <label for="lastname">Nachname</label>
+            <input type="text" id="lastname" placeholder="Muster" autocomplete="family-name" required />
+          </div>
+        </div>
         <div class="field">
           <label for="email">E-Mail</label>
           <input type="email" id="email" placeholder="deine@email.com" autocomplete="email" required />

@@ -32,17 +32,24 @@ document.getElementById("password").addEventListener("input", function () {
 document.getElementById("registerForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const email    = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-  const errBox   = document.getElementById("errorMsg");
-  const okBox    = document.getElementById("successMsg");
-  const btn      = document.getElementById("registerBtn");
+  const firstname = document.getElementById("firstname").value.trim();
+  const lastname  = document.getElementById("lastname").value.trim();
+  const email     = document.getElementById("email").value.trim();
+  const password  = document.getElementById("password").value;
+  const errBox    = document.getElementById("errorMsg");
+  const okBox     = document.getElementById("successMsg");
+  const btn       = document.getElementById("registerBtn");
 
   // Reset
   errBox.classList.remove("visible");
   okBox.classList.remove("visible");
 
-  // Client-seitige Validierung
+  // Validierung
+  if (!firstname || !lastname) {
+    errBox.textContent = "Bitte Vor- und Nachname eingeben.";
+    errBox.classList.add("visible");
+    return;
+  }
   if (password.length < 8) {
     errBox.textContent = "Das Passwort muss mindestens 8 Zeichen haben.";
     errBox.classList.add("visible");
@@ -56,7 +63,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
     const response = await fetch("api/register.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ firstname, lastname, email, password }),
     });
 
     const result = await response.json();
