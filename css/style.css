@@ -23,12 +23,16 @@
 body {
   min-height: 100vh;
   background: var(--cream);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: 'DM Sans', sans-serif;
   color: var(--text);
   position: relative;
+}
+
+/* Login & Register: zentriert */
+body.page-auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
@@ -315,9 +319,11 @@ input:focus {
    ============================================================ */
 
 body.page-monitor {
-  display: block;
+  display: block !important;
   overflow: auto;
   padding-bottom: 90px;
+  align-items: unset;
+  justify-content: unset;
 }
 
 /* ── Header ─────────────────────────────────────────────── */
