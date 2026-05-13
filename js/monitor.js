@@ -3,16 +3,18 @@
 // ── Benutzername laden ──────────────────────────────────────
 async function loadUserName() {
   try {
-    const res  = await fetch('api/profil.php', { credentials: 'include' });
-    if (res.status === 401) {
-      window.location.href = 'login.html';
-      return;
-    }
+    const res = await fetch("api/profil.php", {
+      credentials: "include",
+    });
+
     const data = await res.json();
-    const name = (data.vorname || '') + ' ' + (data.nachname || '');
-    document.getElementById('userName').textContent = name.trim();
+
+    console.log("Name geladen:", data);
+
+    const name = (data.vorname || "") + " " + (data.nachname || "");
+    document.getElementById("userName").textContent = name.trim() || "—";
   } catch (err) {
-    console.error('Name laden fehlgeschlagen:', err);
+    console.error("Name laden fehlgeschlagen:", err);
   }
 }
 

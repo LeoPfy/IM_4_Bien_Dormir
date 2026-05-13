@@ -2,53 +2,66 @@
 
 async function loadProfile() {
   try {
-    const response = await fetch("/api/profil.php", {
+    const response = await fetch("api/profil.php", {
       credentials: "include",
     });
 
     const result = await response.json();
-    console.log("Profile data:", result);
 
-    document.querySelector("#vorname").value = result.vorname || "";
+    console.log("Profil geladen:", result);
+
+    document.getElementById("vorname").value = result.vorname || "";
     document.getElementById("nachname").value = result.nachname || "";
-    
-} 
-    catch (error) {
-    console.error("Failed to load profile:", error);
+  } catch (error) {
+    console.error("Profil konnte nicht geladen werden:", error);
   }
-  //window.location.href = "/login.html";
 }
 
 loadProfile();
 
-document
-  .getElementById("profilForm")
-  .addEventListener("submit", async (e) => {
-    e.preventDefault();
+document.getElementById("profilForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    const vorname = document.getElementById("vorname").value.trim();
-    const nachname = document.getElementById("nachname").value.trim();
+  const vorname = document.getElementById("vorname").value.trim();
+  const nachname = document.getElementById("nachname").value.trim();
 
-    try {
-      const response = await fetch("api/profilUpdate.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ vorname, nachname }),
-      });
-      const result = await response.json();
-      console.log("Update response:", result);
+  const successMsg = document.getElementById("successMsg");
+  const errorMsg = document.getElementById("errorMsg");
+  const btn = document.getElementById("saveProfileBtn");
 
-/*      
-      if (result.status === "success") {
-        alert("Registration successful! You can now log in.");
-        window.location.href = "login.html";
-      } else {
-        alert(result.message || "Registration failed.");
-      }*/
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Something went wrong!");
+  successMsg.classList.remove("visible");
+  errorMsg.classList.remove("visible");
+
+  btn.disabled = true;
+  btn.textContent = "Wird gespeichert…";
+
+  try {
+    const response = await fetch("api/profilUpdate.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ vorname, nachname }),
+    });
+
+    const result = await response.json();
+
+    console.log("Profil gespeichert:", result);
+
+    if (result.status === "success") {
+      successMsg.textContent = "Profil wurde gespeichert.";
+      successMsg.classList.add("visible");
+    } else {
+      errorMsg.textContent = result.message || "Profil konnte nicht gespeichert werden.";
+      errorMsg.classList.add("visible");
     }
-  });
+  } catch (error) {
+    console.error("Fehler:", error);
+    errorMsg.textContent = "Verbindungsfehler. Bitte nochmals versuchen.";
+    errorMsg.classList.add("visible");
+  }
+
+  btn.disabled = false;
+  btn.textContent = "Profil speichern";
+});

@@ -78,6 +78,11 @@ body::before {
   to   { transform: translateY(-12px) rotate(20deg); }
 }
 
+/* Damit Scrollbar nicht grösse beeinflusst*/
+html {
+  overflow-y: scroll;
+}
+
 /* ── Page wrapper ───────────────────────────────────────── */
 
 .wrapper {
@@ -347,12 +352,12 @@ body.page-monitor {
 }
 
 .header-logo {
-  width: 30px;
-  height: 30px;
+  width: 55px;
+  height: 55px;
   object-fit: contain;
   border-radius: 50%;
-  background: var(--beige);
-  padding: 3px;
+  background: #297157;
+  padding: 0.5px;
 }
 
 .header-title {
@@ -789,4 +794,16 @@ body.page-monitor {
 
 .switch input:checked + .slider::before {
   transform: translateX(20px);
+}
+
+/* ============================================================
+   PROFILE PAGE
+   ============================================================ */
+
+.profile-card {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 28px;
+  border: 1px solid rgba(74,124,89,0.08);
+  box-shadow: 0 2px 12px rgba(74,124,89,0.06);
 }
