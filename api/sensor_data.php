@@ -24,7 +24,7 @@ if ($row) {
     echo json_encode([
         'status'      => 'success',
         'temperature' => $row['temperatur'],
-        'humidity'    => $row['luftfeuchtigkeit'],
+        'humidity'    => round($row['luftfeuchtigkeit']),
         'noise'       => $row['geraeusch_db'],
     ]);
 } else {
