@@ -95,7 +95,11 @@ function updateUI(data) {
 
   cards.forEach(({ id, value, status }) => {
     document.getElementById('card-' + id).className = 'sensor-card status-' + status;
-    document.getElementById(id + 'Value').textContent = value;
+    // Temperatur mit 1 Dezimalstelle, Luftfeuchtigkeit und Lautstärke als ganze Zahlen
+    const display = id === 'temp'
+      ? parseFloat(value).toFixed(1)
+      : Math.round(parseFloat(value));
+    document.getElementById(id + 'Value').textContent = display;
   });
 
   // Empfehlung
