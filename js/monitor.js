@@ -29,22 +29,10 @@ const LIMITS = {
   noise:    { min: 0,   max: 40,  absMin: 0,   absMax: 100 },
 };
 
-// ── Platzhalter-Daten ────────────────────────────────────────
-// TODO: Entfernen sobald api/sensor_data.php echte Daten liefert
-function getMockData() {
-  return {
-    temperature: (19 + Math.random() * 4).toFixed(1),
-    humidity:    (45 + Math.random() * 20).toFixed(0),
-    noise:       (28 + Math.random() * 20).toFixed(0),
-  };
-}
-
 // ── Daten vom Backend holen ──────────────────────────────────
 async function fetchSensorData() {
-  // TODO: Diese zwei Zeilen einkommentieren sobald Arduino-Backend bereit:
-  // const res  = await fetch('api/sensor_data.php');
-  // return await res.json();
-  return getMockData();
+  const res = await fetch('api/sensor_data.php', { credentials: 'include' });
+  return await res.json();
 }
 
 // ── Status berechnen ─────────────────────────────────────────
