@@ -1,6 +1,5 @@
 <?php
 // api/history_data.php
-// Gibt die Sensordaten der letzten X Stunden zurück
 session_start();
 header('Content-Type: application/json');
 
@@ -12,18 +11,19 @@ if (!isset($_SESSION['user_id'])) {
 
 require_once '../system/config.php';
 
-// Stunden als Parameter, Standard 6
-$hours = intval($_GET['hours'] ?? 6);
-if ($hours < 1 || $hours > 24) $hours = 6;
+// Letzte X Einträge holen (Standard: 60)
+$limit = intval($_GET['limit'] ?? 60);
+if ($limit < 1 || $limit > 500) $limit = 60;
 
 $stmt = $pdo->prepare("
     SELECT temperatur, luftfeuchtigkeit, geraeusch_db, created_at
     FROM sensordaten
-    WHERE created_at >= NOW() - INTERVAL :hours HOUR
-    ORDER BY created_at ASC
+    ORDER BY created_at DESC
+    LIMIT :limit
 ");
-$stmt->execute([':hours' => $hours]);
-$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+$stmt->execute();
+$rows = array_reverse($stmt->fetchAll(PDO::FETCH_ASSOC));
 
 $data = array_map(function($row) {
     return [

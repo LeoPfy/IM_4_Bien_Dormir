@@ -88,7 +88,7 @@ function createChart(canvasId, labels, values, key, unit) {
 // ── Daten laden und Charts rendern ───────────────────────────
 async function loadHistory() {
   try {
-    const res  = await fetch('api/history_data.php?hours=6', { credentials: 'include' });
+    const res  = await fetch('api/history_data.php?limit=60', { credentials: 'include' });
     const json = await res.json();
 
     if (json.status !== 'success' || !json.data.length) {
