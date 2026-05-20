@@ -78,11 +78,6 @@ body::before {
   to   { transform: translateY(-12px) rotate(20deg); }
 }
 
-/* Damit Scrollbar nicht grösse beeinflusst*/
-html {
-  overflow-y: scroll;
-}
-
 /* ── Page wrapper ───────────────────────────────────────── */
 
 .wrapper {
@@ -352,12 +347,12 @@ body.page-monitor {
 }
 
 .header-logo {
-  width: 55px;
-  height: 55px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
   border-radius: 50%;
-  background: #297157;
-  padding: 0.5px;
+  background: var(--beige);
+  padding: 3px;
 }
 
 .header-title {
@@ -640,170 +635,75 @@ body.page-monitor {
   flex: 1;
 }
 
-
 /* ============================================================
-   SETTINGS PAGE
+   Bien Dormir — Verlauf / History
    ============================================================ */
 
-.settings-section {
+.filter-row {
+  display: flex;
+  gap: 8px;
   margin-bottom: 24px;
+  flex-wrap: wrap;
 }
 
-.settings-heading {
+.filter-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1.5px solid var(--beige);
+  background: var(--white);
+  font-family: 'DM Sans', sans-serif;
   font-size: 13px;
+  font-weight: 400;
   color: var(--muted);
-  font-weight: 500;
-  margin-bottom: 10px;
-  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-.settings-card {
+.filter-btn:hover {
+  border-color: var(--sage-light);
+  color: var(--sage);
+}
+
+.filter-btn.active {
+  background: var(--text);
+  border-color: var(--text);
+  color: #fff;
+  font-weight: 500;
+}
+
+.charts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chart-card {
   background: var(--white);
   border-radius: 18px;
+  padding: 22px 20px;
   border: 1px solid rgba(74,124,89,0.08);
   box-shadow: 0 2px 12px rgba(74,124,89,0.06);
-  overflow: hidden;
+  animation: fadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both;
 }
 
-.settings-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 20px;
-  border-bottom: 1px solid rgba(74,124,89,0.08);
-}
-
-.settings-row:last-child {
-  border-bottom: none;
-}
-
-.settings-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--text);
-  font-size: 15px;
-}
-
-.settings-icon {
-  font-size: 18px;
-}
-
-.setting-label {
-  padding: 18px 20px 0;
-  font-size: 15px;
-  color: var(--text);
+.chart-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
   font-weight: 500;
+  color: var(--text);
+  margin-bottom: 2px;
 }
 
-.range-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  padding: 16px 20px 20px;
-}
-
-.range-grid label,
-.settings-card label {
-  display: block;
-  margin-bottom: 6px;
+.chart-meta {
   font-size: 11px;
   color: var(--muted);
-  text-transform: uppercase;
+  font-weight: 300;
+  margin-bottom: 16px;
 }
 
-.range-grid input,
-.settings-card input {
-  width: 100%;
-  padding: 13px 14px;
-  border: 1.5px solid var(--beige);
-  border-radius: 12px;
-  background: var(--cream);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  color: var(--text);
-  outline: none;
-}
-
-.settings-card input:focus {
-  border-color: var(--sage);
-  background: var(--white);
-}
-
-.settings-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 20px;
-  text-decoration: none;
-  color: var(--text);
-  border-bottom: 1px solid rgba(74,124,89,0.08);
-  transition: background 0.2s;
-}
-
-.settings-link:hover {
-  background: rgba(74,124,89,0.04);
-}
-
-.settings-link:last-child {
-  border-bottom: none;
-}
-
-.logout-link {
-  color: #b84a2e;
-}
-
-/* Switch */
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 46px;
-  height: 26px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  inset: 0;
-  background: #d4d4d4;
-  border-radius: 999px;
-  transition: 0.25s;
-}
-
-.slider::before {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  left: 3px;
-  top: 3px;
-  background: white;
-  border-radius: 50%;
-  transition: 0.25s;
-}
-
-.switch input:checked + .slider {
-  background: var(--sage);
-}
-
-.switch input:checked + .slider::before {
-  transform: translateX(20px);
-}
-
-/* ============================================================
-   PROFILE PAGE
-   ============================================================ */
-
-.profile-card {
-  background: var(--white);
-  border-radius: 18px;
-  padding: 28px;
-  border: 1px solid rgba(74,124,89,0.08);
-  box-shadow: 0 2px 12px rgba(74,124,89,0.06);
+.no-data {
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  padding: 40px 0;
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bien Dormir — Verlauf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="page-monitor">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <img src="img/logo.png" alt="Logo" class="header-logo" />
+      <span class="header-title">Bien Dormir</span>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="monitor-main">
+
+    <div class="page-title-row">
+      <h1>Verlauf</h1>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="filter-row">
+      <button class="filter-btn active" data-filter="all">Alle</button>
+      <button class="filter-btn" data-filter="temp">Temperatur</button>
+      <button class="filter-btn" data-filter="humidity">Luftfeuchtigkeit</button>
+      <button class="filter-btn" data-filter="noise">Geräusch</button>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-container">
+
+      <div class="chart-card" id="section-temp">
+        <h2 class="chart-title">Temperatur</h2>
+        <div class="chart-meta">Optimal: 18–22°C</div>
+        <canvas id="chart-temp"></canvas>
+      </div>
+
+      <div class="chart-card" id="section-humidity">
+        <h2 class="chart-title">Luftfeuchtigkeit</h2>
+        <div class="chart-meta">Optimal: 40–60%</div>
+        <canvas id="chart-humidity"></canvas>
+      </div>
+
+      <div class="chart-card" id="section-noise">
+        <h2 class="chart-title">Geräuschpegel</h2>
+        <div class="chart-meta">Optimal: &lt; 40 dB</div>
+        <canvas id="chart-noise"></canvas>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="monitor.html" class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <span>Monitor</span>
+    </a>
+    <a href="history.html" class="nav-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span>Verlauf</span>
+    </a>
+    <a href="settings.html" class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <span>Settings</span>
+    </a>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/history.js"></script>
+
+</body>
+</html>
