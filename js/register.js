@@ -1,4 +1,4 @@
-// register.js
+// register.js - updated
 
 // ── Passwort-Stärke-Anzeige ──────────────────────────────
 
