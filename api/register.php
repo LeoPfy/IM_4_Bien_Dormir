@@ -31,16 +31,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // User einfügen
-    $insert = $pdo->prepare("INSERT INTO users (firstname, lastname, email, password) 
-                              VALUES (:firstname, :lastname, :email, :pass)");
-    $insert->execute([
-        ':firstname' => $firstname,
-        ':lastname'  => $lastname,
-        ':email'     => $email,
-        ':pass'      => $hashedPassword,
-    ]);
+    try {
+        $insert = $pdo->prepare("INSERT INTO users (email, password, firstname, lastname) 
+                                  VALUES (:email, :pass, :firstname, :lastname)");
+        $success = $insert->execute([
+            ':email'     => $email,
+            ':pass'      => $hashedPassword,
+            ':firstname' => $firstname,
+            ':lastname'  => $lastname,
+        ]);
 
-    echo json_encode(["status" => "success"]);
+        if ($success) {
+            echo json_encode(["status" => "success"]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "Registrierung fehlgeschlagen."]);
+        }
+    } catch (PDOException $e) {
+        echo json_encode(["status" => "error", "message" => "DB Fehler: " . $e->getMessage()]);
+    }
 
 } else {
     echo json_encode(["status" => "error", "message" => "Invalid request method"]);
