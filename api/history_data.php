@@ -19,9 +19,8 @@ $stmt = $pdo->prepare("
     SELECT temperatur, luftfeuchtigkeit, geraeusch_db, created_at
     FROM sensordaten
     ORDER BY created_at DESC
-    LIMIT :limit
+    LIMIT $limit
 ");
-$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
 $stmt->execute();
 $rows = array_reverse($stmt->fetchAll(PDO::FETCH_ASSOC));
 
