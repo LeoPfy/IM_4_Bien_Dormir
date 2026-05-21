@@ -104,20 +104,20 @@ body::before {
 .logo-circle {
   width: 80px;
   height: 80px;
-  background: var(--beige);
+  background: transparent;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 18px;
-  border: 1.5px solid rgba(74, 124, 89, 0.15);
+  border: none;
   overflow: hidden;
 }
 
 /* Logo-Bild: img/logo.png wird hier eingepasst */
 .logo-img {
-  width: 56px;
-  height: 56px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
 }
 
