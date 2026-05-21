@@ -768,22 +768,6 @@ body.page-monitor {
 .switch input:checked + .slider             { background: var(--sage); }
 .switch input:checked + .slider::before     { transform: translateX(20px); }
 
-/* ── Settings: Grenzwert-Gruppen ────────────────────────── */
-
-.settings-group {
-  margin-bottom: 24px;
-}
-
-.settings-group:last-of-type {
-  margin-bottom: 28px;
-}
-
-.settings-group-title {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text);
-  margin-bottom: 12px;
-}
 
 /* ── Settings: Threshold Cards ──────────────────────────── */
 
@@ -813,7 +797,7 @@ body.page-monitor {
 
 .threshold-row {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 12px;
 }
 
@@ -831,9 +815,37 @@ body.page-monitor {
   margin-bottom: 7px;
 }
 
+/* Überschreibt den Browser-Default für number inputs in den Karten */
+.threshold-field input[type="number"] {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid var(--beige);
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text);
+  background: var(--cream);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -moz-appearance: textfield;
+}
+
+.threshold-field input[type="number"]::-webkit-outer-spin-button,
+.threshold-field input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.threshold-field input[type="number"]:focus {
+  border-color: var(--sage);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(74,124,89,0.10);
+}
+
 .threshold-divider {
-  font-size: 20px;
-  color: var(--muted);
-  padding-bottom: 12px;
+  font-size: 18px;
+  color: var(--sand);
   flex-shrink: 0;
+  margin-top: 22px;
 }
