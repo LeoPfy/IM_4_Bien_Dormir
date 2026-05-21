@@ -11,21 +11,15 @@ if (!isset($_SESSION['user_id'])) {
 
 require_once '../system/config.php';
 
-// Stunden zurück (Standard: 6)
-$hours = intval($_GET['hours'] ?? 6);
-if ($hours < 1 || $hours > 24) $hours = 6;
-
-// Jeden 10. Eintrag holen (bei ~4s Intervall = ca. alle 40s ein Punkt)
-// Das ergibt ~54 Punkte pro Stunde, überschaubar für den Chart
+// Letzte 200 Einträge holen, egal wann
 $stmt = $pdo->prepare("
     SELECT temperatur, luftfeuchtigkeit, geraeusch_db, erstellt_am
     FROM sensordaten
-    WHERE erstellt_am >= NOW() - INTERVAL $hours HOUR
-    AND MOD(id, 10) = 0
-    ORDER BY erstellt_am ASC
+    ORDER BY erstellt_am DESC
+    LIMIT 200
 ");
 $stmt->execute();
-$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rows = array_reverse($stmt->fetchAll(PDO::FETCH_ASSOC));
 
 $data = array_map(function($row) {
     return [
