@@ -111,22 +111,17 @@ body::before {
   justify-content: center;
   margin: 0 auto 18px;
   border: none;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* Logo-Bild: img/logo.png wird hier eingepasst */
 .logo-img {
   width: 90px;
   height: 90px;
-  object-fit: cover;
-  border-radius: 50%;
+  object-fit: contain;
 }
 
-/* Platzhalter-Fallback falls das Bild fehlt */
-.logo-img[src="img/logo.png"]:not([complete]),
-.logo-img[src="img/logo.png"][naturalWidth="0"] {
-  visibility: hidden;
-}
+
 
 .brand h1 {
   font-family: 'Playfair Display', serif;
