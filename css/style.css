@@ -102,8 +102,8 @@ body::before {
 }
 
 .logo-circle {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   background: transparent;
   border-radius: 50%;
   display: flex;
@@ -116,9 +116,10 @@ body::before {
 
 /* Logo-Bild: img/logo.png wird hier eingepasst */
 .logo-img {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   object-fit: contain;
+  border-radius: 50%;
 }
 
 /* Platzhalter-Fallback falls das Bild fehlt */
