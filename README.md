@@ -54,7 +54,7 @@
   * *die Programme (mit Dateinamen)*
       Arduino IDE (FINAL_CODE_MASTER_URL) // Visual Studio Code (save_sensor_data.php / config.php) // phpMyAdmin - sensordaten (My SQL-Datenbank), sftp.json // GitHub
   * *die Kommunikationswege*
-      
+
 * *ergänze: **Steckplan** (betrifft Physical Computing, vgl. Slides Kapitel 15): generiert z.B. mit Fritzing (empfohlen), Tinkercad, Wokwi*  
   * *beachtet die [Fritzing Parts](https://github.com/Interaktive-Medien/im_physical_computing/tree/main/15_Intro_Projektdoku) extra für euch*  
 * *ggf. **Bildmaterial***
