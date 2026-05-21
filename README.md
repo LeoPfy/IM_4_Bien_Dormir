@@ -2,13 +2,14 @@
 
 * **Modul:** Interaktive Medien 4 an der Fachhochschule Graubünden (FS26)  
 * **Themenfeld:** IoT-Applikation zum Thema Eltern mit kleinen Kindern  
-* **Name des Projekts:** \[*Name*\]   
-* **Team Physical Computing:** \[*Namen*\]   
-* **Team WebApp:** \[*Namen*\]
+* **Name des Projekts:** \[BienDormir\]   
+* **Team Physical Computing:** \[Ramon Künzle, Christian Steitz\]   
+* **Team WebApp:** \[Davide Pagiusco, Leo Pfyl\]
  
  
 * Welches Problem im Alltag von Eltern mit kleinen Kindern wird gelöst? 
 * Was ist der „Sinn und Zweck“ des Systems?
+    Wir haben ein Produkt entwickelt, das die Luftfeuchtigkeit und Temperatur im Schlafzimmer eines Kindes misst. Mithilfe eines Lautstärkesensors erkennt das System zudem, ob das Kind schläft oder wach ist. Die gesammelten Daten werden in einer Webapp übersichtlich dargestellt und durch Empfehlungen ergänzt, wie das Raumklima optimiert werden kann. So können Eltern gezielt zu einem besseren und erholsameren Schlaf ihres Kindes beitragen.
 
 \[*Bilder / GIFs (optional)*\]
 
@@ -16,8 +17,8 @@
 
 *In diesem Teil werden die gemeinsamen Schritte aus der UX-Abgabe dokumentiert, damit sich hier alles vollständig an einem Ort befindet (betrifft WebApp und Physical Computing)*
 
-* **Figma:** [Link zum Figma](http://link.zum.figma)
-* **User Flow \+ Screen Flow** (Screenshot aus Figma)  
+* **Figma:** [Link zum Figma](https://www.figma.com/design/WzXbcX4luVIzrLjMeQ3jk8/IM-4-%E2%80%93-App-Konzeption-Vorlage---Bien-Dormir?node-id=78-325&p=f&t=gTNohZiSQUzWgca7-0)
+* **User Flow \+ Screen Flow** (Screenshot aus Figma)
 * ggf. weitere Ergänzungen
 * *Welche Features waren angedacht?*
 * *Welche Features wurden nicht umgesetzt? (Warum)*
