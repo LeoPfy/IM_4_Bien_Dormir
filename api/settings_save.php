@@ -19,31 +19,26 @@ $hum_min   = intval($data['hum_min']     ?? 40);
 $hum_max   = intval($data['hum_max']     ?? 60);
 $noise_max = intval($data['noise_max']   ?? 40);
 
-// Validierung
 if ($temp_min >= $temp_max || $hum_min >= $hum_max) {
     echo json_encode(['status' => 'error', 'message' => 'Min-Wert muss kleiner als Max-Wert sein.']);
     exit;
 }
 
-// INSERT oder UPDATE (UPSERT)
 $stmt = $pdo->prepare("
-    INSERT INTO user_settings (user_id, temp_min, temp_max, hum_min, hum_max, noise_max)
-    VALUES (:uid, :temp_min, :temp_max, :hum_min, :hum_max, :noise_max)
-    ON DUPLICATE KEY UPDATE
-        temp_min  = VALUES(temp_min),
-        temp_max  = VALUES(temp_max),
-        hum_min   = VALUES(hum_min),
-        hum_max   = VALUES(hum_max),
-        noise_max = VALUES(noise_max)
+    UPDATE users 
+    SET temp_min = :temp_min, temp_max = :temp_max,
+        hum_min  = :hum_min,  hum_max  = :hum_max,
+        noise_max = :noise_max
+    WHERE id = :uid
 ");
 
 $stmt->execute([
-    ':uid'       => $_SESSION['user_id'],
     ':temp_min'  => $temp_min,
     ':temp_max'  => $temp_max,
     ':hum_min'   => $hum_min,
     ':hum_max'   => $hum_max,
     ':noise_max' => $noise_max,
+    ':uid'       => $_SESSION['user_id'],
 ]);
 
 echo json_encode(['status' => 'success', 'message' => 'Einstellungen gespeichert.']);
