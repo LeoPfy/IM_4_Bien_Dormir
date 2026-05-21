@@ -19,6 +19,10 @@
 
 * **Figma:** [Link zum Figma](https://www.figma.com/design/WzXbcX4luVIzrLjMeQ3jk8/IM-4-%E2%80%93-App-Konzeption-Vorlage---Bien-Dormir?node-id=78-325&p=f&t=gTNohZiSQUzWgca7-0)
 * **User Flow \+ Screen Flow** (Screenshot aus Figma)
+  ![Startseite](img.doc/Mockupseite1.jpg)
+  ![Übersicht](img.doc/Mockupseite2.jpg)
+  ![Verlauf](img.doc/Mockupseite3.jpg)
+
 * ggf. weitere Ergänzungen
 * *Welche Features waren angedacht?*
 * *Welche Features wurden nicht umgesetzt? (Warum)*
