@@ -49,35 +49,69 @@ function getRecommendation(data, tempStatus, humidityStatus, noiseStatus) {
   const issues = [];
 
   if (tempStatus === 'alert') {
-    issues.push(parseFloat(data.temperature) > 22
-      ? 'Die Temperatur ist zu hoch. Lüfte das Zimmer oder senke die Heizung.'
-      : 'Die Temperatur ist zu niedrig. Heize das Zimmer etwas auf.');
+    issues.push({
+      icon: '🌡️',
+      label: 'Temperatur',
+      text: parseFloat(data.temperature) > 22
+        ? 'Zu hoch — Lüfte das Zimmer oder senke die Heizung.'
+        : 'Zu niedrig — Heize das Zimmer etwas auf.'
+    });
   } else if (tempStatus === 'warn') {
-    issues.push(parseFloat(data.temperature) > 22
-      ? 'Die Temperatur ist leicht erhöht.'
-      : 'Die Temperatur ist leicht zu kühl.');
+    issues.push({
+      icon: '🌡️',
+      label: 'Temperatur',
+      text: parseFloat(data.temperature) > 22
+        ? 'Leicht erhöht.'
+        : 'Leicht zu kühl.'
+    });
   }
 
   if (humidityStatus === 'alert') {
-    issues.push(parseFloat(data.humidity) > 60
-      ? 'Die Luft ist zu feucht. Ein Luftentfeuchter kann helfen.'
-      : 'Die Luft ist zu trocken. Ein Luftbefeuchter wäre empfehlenswert.');
+    issues.push({
+      icon: '💧',
+      label: 'Luftfeuchtigkeit',
+      text: parseFloat(data.humidity) > 60
+        ? 'Zu feucht — Ein Luftentfeuchter kann helfen.'
+        : 'Zu trocken — Ein Luftbefeuchter wäre empfehlenswert.'
+    });
   } else if (humidityStatus === 'warn') {
-    issues.push(parseFloat(data.humidity) > 60
-      ? 'Die Luftfeuchtigkeit ist leicht erhöht.'
-      : 'Die Luftfeuchtigkeit ist leicht zu niedrig.');
+    issues.push({
+      icon: '💧',
+      label: 'Luftfeuchtigkeit',
+      text: parseFloat(data.humidity) > 60
+        ? 'Leicht erhöht.'
+        : 'Leicht zu niedrig.'
+    });
   }
 
   if (noiseStatus === 'alert') {
-    issues.push('Der Geräuschpegel ist zu laut. Versuche Lärmquellen zu reduzieren.');
+    issues.push({
+      icon: '🔊',
+      label: 'Geräusch',
+      text: 'Zu laut — Versuche Lärmquellen zu reduzieren.'
+    });
   } else if (noiseStatus === 'warn') {
-    issues.push('Der Geräuschpegel ist leicht erhöht.');
+    issues.push({
+      icon: '🔊',
+      label: 'Geräusch',
+      text: 'Leicht erhöht.'
+    });
   }
 
   if (issues.length === 0) {
-    return { text: 'Alle Werte sind im optimalen Bereich. Das Raumklima ist ideal!', level: 'ok' };
+    return { html: '<span>Alle Werte sind im optimalen Bereich. Das Raumklima ist ideal! ✓</span>', level: 'ok' };
   }
-  return { text: issues.join(' '), level: noiseStatus === 'alert' || tempStatus === 'alert' || humidityStatus === 'alert' ? 'alert' : 'warn' };
+
+  const html = issues.map(i =>
+    `<div class="rec-item"><span class="rec-item-icon">${i.icon}</span><span><strong>${i.label}:</strong> ${i.text}</span></div>`
+  ).join('');
+
+  const level = issues.some(i => ['alert'].includes(
+    i.label === 'Temperatur' ? tempStatus :
+    i.label === 'Luftfeuchtigkeit' ? humidityStatus : noiseStatus
+  )) ? 'alert' : 'warn';
+
+  return { html, level };
 }
 
 // ── UI aktualisieren ─────────────────────────────────────────
@@ -106,7 +140,7 @@ function updateUI(data) {
   const rec = getRecommendation(data, tempStatus, humidityStatus, noiseStatus);
   const recCard = document.getElementById('recommendationCard');
   recCard.className = 'recommendation-card ' + (rec.level !== 'ok' ? rec.level : '');
-  document.getElementById('recommendationText').textContent = rec.text;
+  document.getElementById('recommendationText').innerHTML = rec.html;
 
   // Uhrzeit
   const now = new Date();
