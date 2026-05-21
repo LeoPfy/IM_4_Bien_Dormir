@@ -16,9 +16,9 @@ $limit = intval($_GET['limit'] ?? 60);
 if ($limit < 1 || $limit > 500) $limit = 60;
 
 $stmt = $pdo->prepare("
-    SELECT temperatur, luftfeuchtigkeit, geraeusch_db, created_at
+    SELECT temperatur, luftfeuchtigkeit, geraeusch_db, erstellt_am
     FROM sensordaten
-    ORDER BY created_at DESC
+    ORDER BY erstellt_am DESC
     LIMIT $limit
 ");
 $stmt->execute();
@@ -26,7 +26,7 @@ $rows = array_reverse($stmt->fetchAll(PDO::FETCH_ASSOC));
 
 $data = array_map(function($row) {
     return [
-        'time'        => $row['created_at'],
+        'time'        => $row['erstellt_am'],
         'temperature' => (float) $row['temperatur'],
         'humidity'    => (int)   $row['luftfeuchtigkeit'],
         'noise'       => (float) $row['geraeusch_db'],
