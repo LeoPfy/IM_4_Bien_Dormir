@@ -767,3 +767,20 @@ body.page-monitor {
 
 .switch input:checked + .slider             { background: var(--sage); }
 .switch input:checked + .slider::before     { transform: translateX(20px); }
+
+/* ── Settings: Grenzwert-Gruppen ────────────────────────── */
+
+.settings-group {
+  margin-bottom: 24px;
+}
+
+.settings-group:last-of-type {
+  margin-bottom: 28px;
+}
+
+.settings-group-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 12px;
+}

@@ -4,16 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bien Dormir — Einstellungen</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body class="page-monitor">
 
-  <!-- Header -->
   <header class="header">
     <div class="header-inner">
       <img src="img/logo.png" alt="Logo" class="header-logo" />
@@ -21,86 +17,95 @@
     </div>
   </header>
 
-  <!-- Main -->
   <main class="monitor-main">
 
     <div class="page-title-row">
       <h1>Einstellungen</h1>
     </div>
 
-    <!-- Benachrichtigungen -->
+    <!-- Grenzwerte -->
     <section class="settings-section">
-      <h2 class="settings-heading">Benachrichtigungen</h2>
+      <h2 class="settings-heading">Grenzwerte</h2>
+      <div id="settingsSuccess" class="success-msg" role="status"></div>
+      <div id="settingsError"   class="error-msg"   role="alert"></div>
 
-      <div class="settings-card">
+      <div class="profile-card">
+        <form id="settingsForm">
 
-        <div class="settings-row">
-          <div class="settings-left">
-            <span class="settings-icon">🔔</span>
-            <span>Push Benachrichtigungen</span>
+          <div class="settings-group">
+            <div class="settings-group-title">🌡️ Temperatur (°C)</div>
+            <div class="field-row">
+              <div class="field">
+                <label for="temp_min">Minimum</label>
+                <input type="number" id="temp_min" step="0.5" min="10" max="30" placeholder="18" />
+              </div>
+              <div class="field">
+                <label for="temp_max">Maximum</label>
+                <input type="number" id="temp_max" step="0.5" min="10" max="30" placeholder="22" />
+              </div>
+            </div>
           </div>
 
-          <label class="switch">
-            <input type="checkbox" checked>
-            <span class="slider"></span>
-          </label>
-        </div>
-
-        <div class="settings-row">
-          <div class="settings-left">
-            <span class="settings-icon">🌙</span>
-            <span>Nachtmodus Warnungen</span>
+          <div class="settings-group">
+            <div class="settings-group-title">💧 Luftfeuchtigkeit (%)</div>
+            <div class="field-row">
+              <div class="field">
+                <label for="hum_min">Minimum</label>
+                <input type="number" id="hum_min" step="1" min="10" max="90" placeholder="40" />
+              </div>
+              <div class="field">
+                <label for="hum_max">Maximum</label>
+                <input type="number" id="hum_max" step="1" min="10" max="90" placeholder="60" />
+              </div>
+            </div>
           </div>
 
-          <label class="switch">
-            <input type="checkbox">
-            <span class="slider"></span>
-          </label>
-        </div>
+          <div class="settings-group">
+            <div class="settings-group-title">🔊 Geräuschpegel (dB)</div>
+            <div class="field">
+              <label for="noise_max">Maximum</label>
+              <input type="number" id="noise_max" step="1" min="10" max="100" placeholder="40" />
+            </div>
+          </div>
 
+          <button type="submit" class="btn-primary" id="saveSettingsBtn">Einstellungen speichern</button>
+        </form>
       </div>
     </section>
 
     <!-- Account -->
     <section class="settings-section">
       <h2 class="settings-heading">Account</h2>
-
       <div class="settings-card">
-
         <a href="profil.html" class="settings-link">
           <span>Profil bearbeiten</span>
           <span>›</span>
         </a>
-
         <a href="#" class="settings-link logout-link" id="logoutBtn">
           <span>Logout</span>
           <span>›</span>
         </a>
-
       </div>
     </section>
 
   </main>
 
-  <!-- Bottom Navigation -->
   <nav class="bottom-nav">
     <a href="monitor.html" class="nav-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
       <span>Übersicht</span>
     </a>
     <a href="history.html" class="nav-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
       <span>Verlauf</span>
     </a>
-    <a href="settings.html" class="nav-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <circle cx="12" cy="12" r="3"/>
-  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-</svg>
+    <a href="settings.html" class="nav-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
       <span>Einstellungen</span>
     </a>
   </nav>
 
+  <script src="js/settings.js"></script>
   <script src="js/logout.js"></script>
 
 </body>

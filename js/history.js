@@ -1,11 +1,27 @@
 // history.js
 
-// ── Grenzwerte ───────────────────────────────────────────────
-const LIMITS = {
+// ── Grenzwerte (werden aus DB geladen) ──────────────────────
+let LIMITS = {
   temperature: { min: 18, max: 22 },
   humidity:    { min: 40, max: 60 },
   noise:       { min: 0,  max: 40 },
 };
+
+async function loadLimits() {
+  try {
+    const res  = await fetch('api/settings_load.php', { credentials: 'include' });
+    const data = await res.json();
+    if (data.status === 'success') {
+      LIMITS.temperature.min = data.temp_min;
+      LIMITS.temperature.max = data.temp_max;
+      LIMITS.humidity.min    = data.hum_min;
+      LIMITS.humidity.max    = data.hum_max;
+      LIMITS.noise.max       = data.noise_max;
+    }
+  } catch (err) {
+    console.error('Grenzwerte laden fehlgeschlagen:', err);
+  }
+}
 
 const COLOR_OK    = 'rgba(74, 124, 89, 0.9)';   // Salbeigrün
 const COLOR_ALERT = 'rgba(224, 122, 95, 0.9)';   // Terracotta
@@ -129,4 +145,4 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   });
 });
 
-loadHistory();
+loadLimits().then(() => loadHistory());

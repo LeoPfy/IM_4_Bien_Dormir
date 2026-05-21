@@ -22,12 +22,28 @@ loadUserName();
 
 const POLL_INTERVAL = 5000;
 
-// ── Grenzwerte ───────────────────────────────────────────────
-const LIMITS = {
+// ── Grenzwerte (werden aus DB geladen) ──────────────────────
+let LIMITS = {
   temp:     { min: 18,  max: 22,  absMin: 10,  absMax: 35  },
   humidity: { min: 40,  max: 60,  absMin: 10,  absMax: 100 },
   noise:    { min: 0,   max: 40,  absMin: 0,   absMax: 100 },
 };
+
+async function loadLimits() {
+  try {
+    const res  = await fetch('api/settings_load.php', { credentials: 'include' });
+    const data = await res.json();
+    if (data.status === 'success') {
+      LIMITS.temp.min     = data.temp_min;
+      LIMITS.temp.max     = data.temp_max;
+      LIMITS.humidity.min = data.hum_min;
+      LIMITS.humidity.max = data.hum_max;
+      LIMITS.noise.max    = data.noise_max;
+    }
+  } catch (err) {
+    console.error('Grenzwerte laden fehlgeschlagen:', err);
+  }
+}
 
 // ── Daten vom Backend holen ──────────────────────────────────
 async function fetchSensorData() {
@@ -166,5 +182,8 @@ async function poll() {
   }
 }
 
-poll();
-setInterval(poll, POLL_INTERVAL);
+// Erst Grenzwerte laden, dann starten
+loadLimits().then(() => {
+  poll();
+  setInterval(poll, POLL_INTERVAL);
+});
