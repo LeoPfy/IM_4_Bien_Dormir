@@ -1,4 +1,4 @@
-// settings.js
+// settings.js - updated
 
 async function loadSettings() {
   try {
