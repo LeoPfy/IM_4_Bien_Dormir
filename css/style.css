@@ -784,3 +784,56 @@ body.page-monitor {
   color: var(--text);
   margin-bottom: 12px;
 }
+
+/* ── Settings: Threshold Cards ──────────────────────────── */
+
+.threshold-card {
+  background: var(--white);
+  border-radius: 18px;
+  border: 1px solid rgba(74,124,89,0.08);
+  box-shadow: 0 2px 12px rgba(74,124,89,0.06);
+  padding: 20px;
+  margin-bottom: 0;
+}
+
+.threshold-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.threshold-icon { font-size: 20px; }
+
+.threshold-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.threshold-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.threshold-field {
+  flex: 1;
+}
+
+.threshold-field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.threshold-divider {
+  font-size: 20px;
+  color: var(--muted);
+  padding-bottom: 12px;
+  flex-shrink: 0;
+}
