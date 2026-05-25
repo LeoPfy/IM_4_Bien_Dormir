@@ -63,6 +63,7 @@
   * *die Programme (mit Dateinamen)*
       Arduino IDE (FINAL_CODE_MASTER_URL) // Visual Studio Code (save_sensor_data.php / config.php) // phpMyAdmin - sensordaten (My SQL-Datenbank), sftp.json // GitHub
   * *die Kommunikationswege*
+      Die Sensoren DHT11 und INMP441 senden ihre Messwerte an das ESP32 Board. Der ESP32 verarbeitet die Daten und überträgt sie über WLAN als JSON-Daten an die PHP-Datei, die save_sensor_data.php. Die PHP-Datei speichert die empfangenen Daten anschliessend in einer SQL-Datenbank auf dem Hostpoint-Server. Die Website liest die gespeicherten Werte aus der Datenbank aus und visualisiert sie für die Benutzer:innen.
 
 * *ergänze: **Steckplan** (betrifft Physical Computing, vgl. Slides Kapitel 15): generiert z.B. mit Fritzing (empfohlen), Tinkercad, Wokwi*  
   * *beachtet die [Fritzing Parts](https://github.com/Interaktive-Medien/im_physical_computing/tree/main/15_Intro_Projektdoku) extra für euch*  
