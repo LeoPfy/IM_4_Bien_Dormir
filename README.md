@@ -138,7 +138,7 @@ Oder per FTP alle Dateien hochladen in das Root-Verzeichnis:
 
 * ***Was muss ich wie bauen, verbinden, installieren?***  
 * *ergänze: **Komponentenplan** (betrifft Physical Computing, vgl. Slides Kapitel 15): Schaubild enthält*  
-  * Unser Komponentenplan: 
+  * Unser Komponentenplan: <img src="Pics_&_Vids/Komponentenplan_Bien_Dormir.png" alt="Komponentenplan Bien Dormir" />
   * *Die Liste der eingesetzten Komponeten* 
       ESP32 Family Device Board, DHT11 Temperatur- und Luftfeuchtigkeitssensor, INMP441 Mikrofon, Breadboard (unsere Steckplatine), Jumper Kabel (Male/Female Verbindungen), USB-C Kabel, WLAN-Verbindung, Hostpoint Webhosting und MySQL-Datenbank 
   * *die verbundenen Sensoren und Aktoren*  
@@ -151,6 +151,7 @@ Oder per FTP alle Dateien hochladen in das Root-Verzeichnis:
 * *ergänze: **Steckplan** (betrifft Physical Computing, vgl. Slides Kapitel 15): generiert z.B. mit Fritzing (empfohlen), Tinkercad, Wokwi*  
   * *beachtet die [Fritzing Parts](https://github.com/Interaktive-Medien/im_physical_computing/tree/main/15_Intro_Projektdoku) extra für euch*  
 * *ggf. **Bildmaterial***
+* Mehr Bildmaterial: <img src="Pics_&_Vids/Bildmaterial_Physical_Computing" alt="Bildmaterial Physical Computing" />
 
 ## technische Details
 
