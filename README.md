@@ -138,6 +138,7 @@ Oder per FTP alle Dateien hochladen in das Root-Verzeichnis:
 
 * ***Was muss ich wie bauen, verbinden, installieren?***  
 * *ergänze: **Komponentenplan** (betrifft Physical Computing, vgl. Slides Kapitel 15): Schaubild enthält*  
+  * Unser Komponentenplan: 
   * *Die Liste der eingesetzten Komponeten* 
       ESP32 Family Device Board, DHT11 Temperatur- und Luftfeuchtigkeitssensor, INMP441 Mikrofon, Breadboard (unsere Steckplatine), Jumper Kabel (Male/Female Verbindungen), USB-C Kabel, WLAN-Verbindung, Hostpoint Webhosting und MySQL-Datenbank 
   * *die verbundenen Sensoren und Aktoren*  
