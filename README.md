@@ -150,7 +150,8 @@ Oder per FTP alle Dateien hochladen in das Root-Verzeichnis:
 
 * *ergänze: **Steckplan** (betrifft Physical Computing, vgl. Slides Kapitel 15): generiert z.B. mit Fritzing (empfohlen), Tinkercad, Wokwi*  
   * *beachtet die [Fritzing Parts](https://github.com/Interaktive-Medien/im_physical_computing/tree/main/15_Intro_Projektdoku) extra für euch*  
-* *ggf. **Bildmaterial***
+  * Unser Steckplan: <img src="Pics_&_Vids/Bien_Dormir_Steckplan_Fritzing.png" alt="Steckplan Bien Dormir" />
+* *ggf. **Bildmaterial**
 * Mehr Bildmaterial: <img src="Pics_&_Vids/Bildmaterial_Physical_Computing" alt="Bildmaterial Physical Computing" />
 
 ## technische Details
