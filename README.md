@@ -46,10 +46,92 @@
 ***verständliche** Schritt-für-Schritt-Anleitung für Aussenstehende, um das Projekt zu klonen und auf einem eigenen Server zu installieren*
 
 1. *Was benötige ich an Infrastruktur?*  
+      Benötigte Infrastruktur
+      Ein Webhosting mit PHP 8.0+ und MySQL (z.B. Hostpoint, Infomaniak, oder lokal mit XAMPP/MAMP)
+      Ein GitHub-Account um das Repository zu klonen
+      Ein Arduino mit DHT-Sensor (Temperatur/Luftfeuchtigkeit) und Mikrofon-Sensor
+
 2. *Was muss ich auf meinem Webserver installieren?*  
+      PHP 8.0+ mit PDO und PDO_MySQL Extension
+      MySQL 5.7+ oder MariaDB
+      Apache Webserver
+      Falls man ein Hosting hat, ist das alles schon vorinstalliert!
+
 3. *Wie kann ich die Datenbank importieren?*  
+      Geh in phpMyAdmin und führe folgendes SQL aus um alle Tabellen zu erstellen:
+
+      CREATE TABLE users (
+        id         INT AUTO_INCREMENT PRIMARY KEY,
+        email      VARCHAR(100) NOT NULL UNIQUE,
+        password   VARCHAR(255) NOT NULL,
+        firstname  VARCHAR(64),
+        lastname   VARCHAR(64),
+        temp_min   DECIMAL(4,1) DEFAULT 18.0,
+        temp_max   DECIMAL(4,1) DEFAULT 22.0,
+        hum_min    INT DEFAULT 40,
+        hum_max    INT DEFAULT 60,
+        noise_max  INT DEFAULT 40
+      );
+
+      CREATE TABLE sensordaten (
+        id                    INT AUTO_INCREMENT PRIMARY KEY,
+        temperatur            DECIMAL(5,2),
+        luftfeuchtigkeit      DECIMAL(5,2),
+        temperatur_status     VARCHAR(50),
+        luftfeuchtigkeit_status VARCHAR(50),
+        mikrofon_rohwert      INT,
+        geraeusch_db          DECIMAL(5,2),
+        geraeusch_status      VARCHAR(50),
+        erstellt_am           TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+
 4. *Wo muss ich die DB-Credentials eintragen?*  
-5. *…*  
+      Lokal im Ordner System ein File namens config.php und dort wie folgt die Credentials eintragen: 
+
+      $host = 'localhost';     
+      $db   = 'bien_dormir';   -> Name der Datenbank
+      $user = 'dein_db_user';  -> DB-Benutzername
+      $pass = 'dein_passwort'; -> DB-Passwort
+
+      Umbedingt beachten, dass das File im .gitignore eingetragen ist, damit die Credentials nicht auf den Gitserver geladen werden.
+
+5. Dateien auf den Server Laden
+
+Repository klonen
+git clone https://github.com/euer-repo/bien-dormir.git
+
+Oder per FTP alle Dateien hochladen in das Root-Verzeichnis:
+/
+├── index.html
+├── login.html
+├── register.html
+├── monitor.html
+├── history.html
+├── settings.html
+├── profil.html
+├── css/
+│   └── style.css
+├── js/
+│   ├── login.js
+│   ├── register.js
+│   ├── monitor.js
+│   ├── history.js
+│   ├── settings.js
+│   └── profil.js
+├── api/
+│   ├── login.php
+│   ├── register.php
+│   ├── sensor_data.php
+│   ├── save_sensor.php
+│   ├── history_data.php
+│   ├── settings_load.php
+│   ├── settings_save.php
+│   └── profil.php / profilUpdate.php
+├── img/
+│   └── logo.png
+└── system/
+    └── config.php
+      
 6. *Wie nehme ich das physische Artefakt in Betrieb?*
 
 #### Bauanleitung Physical Computing
