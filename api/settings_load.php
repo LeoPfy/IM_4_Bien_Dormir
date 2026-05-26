@@ -1,5 +1,9 @@
 <?php
 // api/settings_load.php
+// Liest die persönlichen Grenzwerte des eingeloggten Users direkt aus der users-Tabelle.
+// Gibt JSON zurück mit temp_min, temp_max, hum_min, hum_max, noise_max.
+// Falls keine Werte gesetzt: Standardwerte (18/22°C, 40/60%, 40dB).
+
 session_start();
 header('Content-Type: application/json');
 

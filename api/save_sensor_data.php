@@ -1,4 +1,8 @@
 <?php
+// api/save_sensor_data.php
+// Empfängt Sensordaten vom Arduino per HTTP POST (JSON).
+// Validiert alle Pflichtfelder und schreibt die Daten per PDO in die sensordaten-Tabelle.
+// Kein Session-Check nötig da der Aufrufer der Arduino ist, nicht ein Browser.
 
 $conn = new mysqli($host, $user, $password, $dbname);
 

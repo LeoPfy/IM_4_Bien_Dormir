@@ -1,3 +1,8 @@
+// auth.js
+// Prüft beim Laden der Seite ob der User eingeloggt ist (api/protected.php).
+// Bei fehlendem Login (401): Weiterleitung zu login.html.
+// Wird auf profil.html eingebunden als zusätzlicher Auth-Schutz.
+
 async function checkAuth() {
   try {
     const response = await fetch("/api/protected.php", {

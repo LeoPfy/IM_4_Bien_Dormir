@@ -1,5 +1,8 @@
 <?php
 // api/sensor_data.php
+// Gibt den neusten Eintrag aus der sensordaten-Tabelle als JSON zurück.
+// Felder: temperature, humidity, noise (gemappt von temperatur, luftfeuchtigkeit, geraeusch_db).
+// Nur für eingeloggte User zugänglich (Session-Check). Wird von monitor.js alle 60s aufgerufen.
 session_start();
 header('Content-Type: application/json');
 

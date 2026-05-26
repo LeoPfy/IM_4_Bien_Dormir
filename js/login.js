@@ -1,4 +1,7 @@
 // login.js
+// Verarbeitet das Login-Formular. Sendet Email und Passwort per POST an api/login.php.
+// Bei Erfolg: Weiterleitung zu monitor.html.
+// Bei Fehler: Inline-Fehlermeldung im Formular (kein alert()).
 
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
   e.preventDefault();

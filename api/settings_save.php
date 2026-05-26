@@ -1,5 +1,9 @@
 <?php
 // api/settings_save.php
+// Speichert die persönlichen Grenzwerte per HTTP POST (JSON) in der users-Tabelle.
+// Validiert dass Min-Wert kleiner als Max-Wert ist.
+// Aktualisiert temp_min, temp_max, hum_min, hum_max, noise_max für den eingeloggten User.
+
 session_start();
 header('Content-Type: application/json');
 

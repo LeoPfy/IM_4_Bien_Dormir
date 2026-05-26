@@ -98,7 +98,7 @@
 5. Dateien auf den Server Laden
 
 Repository klonen
-git clone https://github.com/euer-repo/bien-dormir.git
+git clone https://github.com/LeoPfy/IM_4_Bien_Dormir
 
 Oder per FTP alle Dateien hochladen in das Root-Verzeichnis:
 /
@@ -156,17 +156,96 @@ Oder per FTP alle Dateien hochladen in das Root-Verzeichnis:
 // Hier sollte das Verständnis ersichtlich sein / Wie stehen die Dateien in Beziehung zueinander, Wie reden Die Dateien miteinander, Wie ist der Weg der Daten
 
 * **Projektstruktur / Code-Struktur:** \[*Hinweis: Der Code selbst muss im Repository liegen und im Kopfbereich jeder Datei eine kurze Zusammenfassung enthalten.*\]  
+      bien-dormir/
+├── index.html          Startseite → leitet zu login.html weiter
+├── login.html          Login-Formular
+├── register.html       Registrierungs-Formular
+├── monitor.html        Live-Sensoranzeige (Hauptseite nach Login)
+├── history.html        Verlauf mit Charts
+├── settings.html       Grenzwerte & Account-Einstellungen
+├── profil.html         Profil bearbeiten
+│
+├── css/
+│   └── style.css       Alle Styles für alle Seiten (ein zentrales File)
+│
+├── js/                 Frontend-Logik (kein PHP, kein CSS)
+│   ├── login.js        Login-Formular → POST an api/login.php
+│   ├── register.js     Register-Formular → POST an api/register.php
+│   ├── monitor.js      Polling alle 60s → api/sensor_data.php + api/settings_load.php
+│   ├── history.js      Lädt Verlaufsdaten → api/history_data.php
+│   ├── settings.js     Liest/speichert Grenzwerte → api/settings_load/save.php
+│   ├── profil.js       Liest/speichert Profil → api/profil.php + profilUpdate.php
+│   └── logout.js       Session beenden → api/logout.php
+│
+├── api/                Backend-Logik (PHP, nur Server-seitig)
+│   ├── login.php       Prüft Credentials, startet Session
+│   ├── register.php    Erstellt neuen User in DB
+│   ├── logout.php      Beendet Session
+│   ├── profil.php      Gibt User-Daten aus DB zurück
+│   ├── profilUpdate.php  Speichert Vor-/Nachname in DB
+│   ├── sensor_data.php   Gibt neusten Sensorwert aus DB zurück
+│   ├── save_sensor.php   Empfängt Daten vom Arduino → schreibt in DB
+│   ├── history_data.php  Gibt letzte 200 Sensorwerte zurück
+│   ├── settings_load.php Liest Grenzwerte aus users Tabelle
+│   └── settings_save.php Speichert Grenzwerte in users Tabelle
+│
+├── img/
+│   └── logo.png        Bien Dormir Logo
+│
+└── system/
+    └── config.php      DB-Verbindung (PDO) — nicht im öffentlichen Ordner
+
+Wie reden die Dateien miteinander? 
+   Jede HTML-Seite lädt ihr zugehöriges JS-File. Das JS kommuniziert ausschliesslich über fetch() mit den PHP-Endpunkten im api/ Ordner. Die Datenbank ist dann nur für PHP zugänglich, nie direkt für den Browser.
+
 * **Datenschnittstelle: \[***zwischen WebApp und Physical Computing*\]  
+      Der Arduino sendet alle 3-4 Sekunden per HTTP POST einen JSON-Datensatz mit Temperatur, Luftfeuchtigkeit und Geräuschpegel an den Endpunkt api/save_sensor.php auf dem Webserver. Dieser Endpunkt validiert die eingehenden Daten und schreibt sie per PDO in die MySQL-Tabelle sensordaten. Die WebApp liest diese Daten dann unabhängig davon — sensor_data.php liefert immer den neusten Eintrag für die Live-Anzeige, history_data.php die letzten 200 Einträge für den Verlauf. Arduino und WebApp kommunizieren also nie direkt miteinander, sondern ausschliesslich über die gemeinsame Datenbank als Zwischenspeicher.
 * **ERM:** \[*Erklärung und Schaubild*\]  
+┌─────────────────────────────────────────────────────┐
+│                    users                            │
+├────────────────────┬──────────────┬─────────────────┤
+│ id                 │ int(11)      │ PK, AUTO_INCR.  │
+│ email              │ varchar(100) │ NOT NULL, UNIQUE│
+│ password           │ varchar(255) │ NOT NULL        │
+│ firstname          │ varchar(64)  │ NOT NULL        │
+│ lastname           │ varchar(64)  │ NOT NULL        │
+│ temp_min           │ decimal(4,1) │ DEFAULT 18.0    │
+│ temp_max           │ decimal(4,1) │ DEFAULT 22.0    │
+│ hum_min            │ int(11)      │ DEFAULT 40      │
+│ hum_max            │ int(11)      │ DEFAULT 60      │
+│ noise_max          │ int(11)      │ DEFAULT 40      │
+└────────────────────┴──────────────┴─────────────────┘
+
+┌──────────────────────────────────────────────────────────┐
+│                      sensordaten                         │
+├─────────────────────────┬──────────────┬─────────────────┤
+│ id                      │ int(11)      │ PK, NOT NULL    │
+│ temperatur              │ decimal(5,2) │ NOT NULL        │
+│ luftfeuchtigkeit        │ decimal(5,2) │ NOT NULL        │
+│ temperatur_status       │ varchar(100) │ NOT NULL        │
+│ luftfeuchtigkeit_status │ varchar(100) │ NOT NULL        │
+│ mikrofon_rohwert        │ int(11)      │ NOT NULL        │
+│ geraeusch_db            │ decimal(5,2) │ NOT NULL        │
+│ geraeusch_status        │ varchar(100) │ NOT NULL        │
+│ erstellt_am             │ timestamp    │ DEFAULT now()   │
+└─────────────────────────┴──────────────┴─────────────────┘
+
+Beziehung zwischen den Tabellen: Die beiden Tabellen haben keine direkte Fremdschlüssel-Beziehung — sensordaten gehört dem Raum, nicht einem spezifischen User. Jeder eingeloggte User sieht dieselben Sensordaten, aber seine eigenen Grenzwerte aus users bestimmen ob ein Wert grün oder rot angezeigt wird.
+
 * **Authentifizierung:** \[Erklärung\]
+
+      Die Authentifizierung basiert auf PHP Sessions. Beim Login sendet der Browser Email und Passwort per HTTP POST an api/login.php, welches die Email in der Datenbank sucht und das eingegebene Passwort mit dem gespeicherten bcrypt-Hash via password_verify() vergleicht. Bei Erfolg wird eine Session gestartet und die user_id serverseitig in $_SESSION gespeichert — der Browser erhält lediglich ein Session-Cookie. Jeder weitere API-Aufruf prüft ob dieses Cookie eine gültige Session referenziert, andernfalls wird ein 401 Unauthorized zurückgegeben und der User zum Login weitergeleitet. Passwörter werden nie im Klartext gespeichert, und alle Datenbankabfragen sind mit PDO Prepared Statements gegen SQL-Injection geschützt.
 
 ## Known bugs
 
 * Was funktioniert noch nicht einwandfrei?
-Der verlauf des geräuschpegels sieht noch etwas komisch aus.
-* Was ist uns aufgefallen bei der Entwicklung?  
+      Der Verlauf des Geräuschpegels sieht durch die vielen Schwankungen sehr chaotisch aus. Zudem schreibt der Arduino aktuell alle 3-4 Sekunden einen Eintrag in die Datenbank, was für eine Schlafüberwachungs-App deutlich zu häufig ist und zu sehr grossen Datenmengen führt.
+
+* Was ist uns aufgefallen bei der Entwicklung?
+       Wir haben gemerkt dass Browser-Caching bei der Entwicklung oft für Verwirrung sorgt, da Änderungen nicht sofort sichtbar sind und oft die veraltete Webseite angezeigt wird. Um dies zu umgehen, haben wir nurnoch im Inkognito Modus des Browsers gearbeitet. Die Zusammenarbeit zwischen dem Physical-Computing-Team und dem WebApp-Team ist sehr wichtig und muss schon von Anfang an erfolgen. Bei uns haben wir zu lange getrennt gearbeitet, was dazu geführt hat, dass wir kurzzeitig auf 2 verschiedenen Hostings unterwegs waren und die Datenbanken migrieren mussten.
+
 * Was könnte noch verbessert werden?
-Darstellung der Verläufe
+      Die Darstellung der Verläufe könnte durch eine Glättung der Kurven (z.B. Durchschnittswerte pro Minute statt Rohdaten) deutlich übersichtlicher werden. Zusätzlich wäre eine Push-Benachrichtigung sinnvoll, die Eltern aktiv auf dem Handy alarmiert wenn ein Grenzwert überschritten wird, aktuell müssen sie die App aktiv öffnen um den Status zu sehen. Langfristig wäre auch ein Mehrkinds-Profil denkbar, damit Familien mit mehreren Kindern separate Zimmer und Grenzwerte verwalten können.
 
 ## Umsetzungsprozess
 

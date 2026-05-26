@@ -1,4 +1,7 @@
 // profil.js
+// Lädt beim Start den Vor- und Nachnamen des eingeloggten Users (api/profil.php).
+// Beim Speichern werden die Änderungen per POST an api/profilUpdate.php gesendet
+// und in der users-Tabelle der Datenbank aktualisiert.
 
 async function loadProfile() {
   try {

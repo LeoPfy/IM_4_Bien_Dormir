@@ -1,4 +1,7 @@
-// settings.js - updated
+// settings.js
+// Lädt beim Start die gespeicherten Grenzwerte des Users (api/settings_load.php) und füllt
+// das Formular vor. Beim Speichern werden die Werte per POST an api/settings_save.php gesendet
+// und in der users-Tabelle der Datenbank gespeichert.
 
 async function loadSettings() {
   try {

@@ -1,4 +1,7 @@
 // monitor.js
+// Lädt beim Start die persönlichen Grenzwerte (api/settings_load.php) und den Benutzernamen (api/profil.php).
+// Pollt danach alle 60 Sekunden die aktuellen Sensordaten (api/sensor_data.php) und aktualisiert
+// die Karten mit Farbe (grün/gelb/rot) sowie die Empfehlungsbox.
 
 // ── Benutzername laden ──────────────────────────────────────
 async function loadUserName() {

@@ -1,4 +1,8 @@
 <?php
+// api/profilUpdate.php
+// Aktualisiert Vor- und Nachname des eingeloggten Users per HTTP POST (JSON: vorname, nachname).
+// Schreibt die Änderungen in die users-Tabelle (firstname, lastname).
+// Nur für eingeloggte User zugänglich (Session-Check).
 session_start();
 require_once '../system/config.php';
 

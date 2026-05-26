@@ -1,4 +1,7 @@
 // logout.js
+// Beendet die PHP-Session durch einen GET-Request an api/logout.php
+// und leitet den User anschliessend zu login.html weiter.
+
 document.getElementById("logoutBtn").addEventListener("click", async (e) => {
   // Prevent the default button behavior
   e.preventDefault();

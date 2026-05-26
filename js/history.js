@@ -1,4 +1,7 @@
 // history.js
+// Lädt die persönlichen Grenzwerte (api/settings_load.php) und danach die letzten 200 Sensoreinträge
+// (api/history_data.php). Rendert drei Chart.js-Liniendiagramme mit grüner/roter Segmentfärbung
+// je nach Grenzwert. Filter-Buttons ermöglichen das Ein-/Ausblenden einzelner Sensoren.
 
 // ── Grenzwerte (werden aus DB geladen) ──────────────────────
 let LIMITS = {

@@ -1,5 +1,9 @@
 <?php
-// register.php
+// api/register.php
+// Verarbeitet Registrierungsanfragen per HTTP POST (JSON: firstname, lastname, email, password).
+// Prüft ob Email bereits existiert, hasht das Passwort mit bcrypt und schreibt den neuen
+// User in die users-Tabelle. Gibt JSON { status: "success" } oder Fehlermeldung zurück.
+
 session_start();
 header('Content-Type: application/json');
 

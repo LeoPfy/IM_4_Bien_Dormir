@@ -1,5 +1,9 @@
 <?php
-// index.php (API that returns JSON about the logged-in user)
+// api/profil.php
+// Liest Profildaten (id, email, firstname, lastname) des eingeloggten Users aus der users-Tabelle.
+// Gibt JSON zurück mit vorname und nachname (gemappt von firstname/lastname).
+// Wird von profil.js und monitor.js für die Willkommens-Anzeige verwendet.
+
 session_start();
 
 include_once "../system/config.php";

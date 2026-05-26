@@ -1,7 +1,8 @@
-/* ============================================================
-   Bien Dormir — Global Styles
-   Seiten: login, register, monitor, history, settings, profil
-   ============================================================ */
+/* style.css
+   Zentrale Stylesheet-Datei für alle Seiten der Bien Dormir WebApp.
+   Enthält Styles für: Login/Register (page-auth), Monitor, Verlauf, Settings und Profil (page-monitor).
+   Alle CSS-Variablen (Farben, Schatten) sind im :root Block definiert.
+*/
 
 /* ── Reset & Variablen ──────────────────────────────────────── */
 

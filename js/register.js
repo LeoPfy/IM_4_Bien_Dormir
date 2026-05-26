@@ -1,4 +1,7 @@
-// register.js - updated
+// register.js
+// Verarbeitet das Registrierungsformular. Sendet Vorname, Nachname, Email und Passwort
+// per POST an api/register.php. Enthält clientseitige Validierung und Passwort-Stärke-Anzeige.
+// Bei Erfolg: Weiterleitung zu login.html nach 1.8 Sekunden.
 
 // ── Passwort-Stärke-Anzeige ──────────────────────────────
 

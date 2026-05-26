@@ -1,5 +1,10 @@
 <?php
-// login.php
+// api/login.php
+// Verarbeitet Login-Anfragen per HTTP POST (JSON: email, password).
+// Prüft Email gegen die users-Tabelle und verifiziert das Passwort mit password_verify().
+// Bei Erfolg: Session starten, user_id speichern, JSON { status: "success" } zurückgeben.
+// Bei Fehler: JSON { status: "error", message: "..." } zurückgeben.
+
 ini_set('session.cookie_httponly', 1);
 // ini_set('session.cookie_secure', 1); // if using HTTPS
 session_start();

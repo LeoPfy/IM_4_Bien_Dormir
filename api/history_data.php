@@ -1,5 +1,9 @@
 <?php
 // api/history_data.php
+// Gibt die letzten 200 Einträge aus der sensordaten-Tabelle als JSON-Array zurück.
+// Sortiert chronologisch (ältester zuerst) für die Chart-Darstellung.
+// Nur für eingeloggte User zugänglich (Session-Check). Wird von history.js aufgerufen.
+
 session_start();
 header('Content-Type: application/json');
 
