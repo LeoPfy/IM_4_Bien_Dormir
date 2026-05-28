@@ -8,6 +8,7 @@
  
  
 * Welches Problem im Alltag von Eltern mit kleinen Kindern wird gelöst? 
+    Das Problem, dem wir uns mit unserem Projekt Bien Dormir widmen, ist die Schlaflosigkeit und Belastung von Eltern, die durch das häufige Aufwachen ihrer Kinder infolge einer ungeeigneten Raumtemperatur und Luftfeuchtigkeit entsteht. Unser Ziel ist es, durch die Analyse der Schlafumgebung optimale Bedingungen für einen ruhigeren und erholsameren Schlaf zu schaffen.
 * Was ist der „Sinn und Zweck“ des Systems?
     Wir haben ein Produkt entwickelt, das die Luftfeuchtigkeit und Temperatur im Schlafzimmer eines Kindes misst. Mithilfe eines Lautstärkesensors erkennt das System zudem, ob das Kind schläft oder wach ist. Die gesammelten Daten werden in einer Webapp übersichtlich dargestellt und durch Empfehlungen ergänzt, wie das Raumklima optimiert werden kann. So können Eltern gezielt zu einem besseren und erholsameren Schlaf ihres Kindes beitragen.
 
