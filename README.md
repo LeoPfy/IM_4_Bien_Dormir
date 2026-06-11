@@ -40,7 +40,7 @@
 ### Setup
 
 * **WebApp:** [Link zur Website](https://biendormir.orusovez.myhostpoint.ch/)  
-* **Video-Dokumentation:** [Link zum Video auf Youtube](http://link.zum.video) 
+* **Video-Dokumentation:** [Link zum Video auf Youtube](https://www.youtube.com/watch?v=mku7JxIeCvQ) 
 
 #### Installationsanleitung WebApp
 
